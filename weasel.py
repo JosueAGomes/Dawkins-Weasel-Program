@@ -2,12 +2,11 @@ import string
 import random
 
 # Conjunto de caracteres possiveis a serem utilizados.
-caracteres = string.ascii_letters + " "
+caracteres = string.ascii_uppercase + " "
 # Tamanho da sequencia sugerida no algoritimo
 tamSequencia = 28
 #probabilidade de mutação
 probMutacao = 5
-
 # Quantidade de copias sugeridas no algoritmo
 qtdElementos = 100
 
@@ -45,17 +44,16 @@ def calcularPontuacao(elemento, seqAlvo):
 
 def selecionarMelhorElementoGeracao(geracao, seqAlvo):
     melhorElemento = ""
-    menorPontuacao = tamSequencia
+    menorPontuacao = tamSequencia + 1
     for e in range(qtdElementos): # e de elemento da sequencia
         pontuacao = calcularPontuacao(geracao[e], seqAlvo)
         if pontuacao < menorPontuacao:
             menorPontuacao = pontuacao
             melhorElemento = geracao[e]
-    return {
+    return {#dicionario de resposta
         "melhor" : melhorElemento,
         "pontuacao" : menorPontuacao
     }
-
 
 def evoluir(probMutacao, qtdElementos ):
     seqAtual = gerarSequenciaInicial()
